@@ -151,7 +151,7 @@ fn default_anthropic_endpoint() -> String {
 }
 
 fn default_anthropic_model() -> String {
-    "claude-3-5-sonnet-20241022".to_string()
+    "claude-3-5-sonnet".to_string()
 }
 
 impl Default for AnthropicConfig {

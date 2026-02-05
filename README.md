@@ -115,7 +115,7 @@ prep --provider ollama-cloud "explain microservices"
 | Ollama (Local) | `--provider ollama` | `llama3.2` | Not required |
 | Ollama Cloud | `--provider ollama-cloud` | `llama3.2` | `OLLAMA_API_KEY` |
 | OpenAI | `--provider openai` | `gpt-4o` | `OPENAI_API_KEY` |
-| Anthropic | `--provider anthropic` | `claude-3-5-sonnet-20241022` | `ANTHROPIC_API_KEY` |
+| Anthropic | `--provider anthropic` | `claude-3-5-sonnet` | `ANTHROPIC_API_KEY` |
 
 ## Configuration
 
@@ -143,7 +143,7 @@ model = "gpt-4o"
 
 [providers.anthropic]
 endpoint = "https://api.anthropic.com/v1"
-model = "claude-3-5-sonnet-20241022"
+model = "claude-3-5-sonnet"
 
 [ui]
 color = true                  # Colored output
