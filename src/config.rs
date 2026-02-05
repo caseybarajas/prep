@@ -6,7 +6,7 @@ use std::path::PathBuf;
 
 use crate::cli::ProviderChoice;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct Config {
     #[serde(default)]
     pub default: DefaultConfig,
@@ -206,16 +206,7 @@ impl Default for HistoryConfig {
     }
 }
 
-impl Default for Config {
-    fn default() -> Self {
-        Self {
-            default: DefaultConfig::default(),
-            providers: ProvidersConfig::default(),
-            ui: UiConfig::default(),
-            history: HistoryConfig::default(),
-        }
-    }
-}
+
 
 impl Config {
     /// Get the configuration file path
