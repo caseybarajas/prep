@@ -1,0 +1,73 @@
+[package]
+name = "prep"
+version = "1.0.0"
+edition = "2021"
+description = "A beautiful CLI tool to refine messy prompts into precise, well-structured prompts for AI assistants"
+authors = ["Casey Barajas"]
+license = "MIT"
+repository = "https://github.com/caseybarajas/prep"
+keywords = ["cli", "ai", "prompt", "ollama", "llm"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "prep"
+path = "src/main.rs"
+
+[dependencies]
+# CLI
+clap = { version = "4.4", features = ["derive", "env", "wrap_help"] }
+clap_complete = "4.4"
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json", "rustls-tls"], default-features = false }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Terminal UI
+colored = "2.1"
+indicatif = "0.17"
+dialoguer = "0.11"
+console = "0.15"
+
+# Configuration & paths
+directories = "5.0"
+
+# Clipboard
+arboard = "3.3"
+
+# Database for history
+rusqlite = { version = "0.30", features = ["bundled"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Async trait
+async-trait = "0.1"
+
+# Date/time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Terminal detection
+atty = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+opt-level = 0
+debug = true

@@ -1,0 +1,50 @@
+# Build artifacts
+/target/
+debug/
+release/
+**/*.rs.bk
+
+# Cargo
+Cargo.lock
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.*.sw?
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Secrets - NEVER commit these
+.env
+.env.*
+.env.local
+.env.*.local
+*.key
+*.pem
+*.secret
+secrets/
+*.api_key
+
+# Local config with potential secrets
+local.toml
+config.local.toml
+
+# Test artifacts
+*.profraw
+*.profdata
+coverage/
+
+# Generated files
+completions/
