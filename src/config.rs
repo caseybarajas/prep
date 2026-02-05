@@ -90,7 +90,6 @@ pub struct OllamaCloudConfig {
     #[serde(default = "default_ollama_cloud_endpoint")]
     pub endpoint: String,
     pub model: Option<String>,
-    #[serde(skip_serializing)]
     pub api_key: Option<String>,
 }
 
@@ -114,7 +113,6 @@ pub struct OpenAIConfig {
     pub endpoint: String,
     #[serde(default = "default_openai_model")]
     pub model: String,
-    #[serde(skip_serializing)]
     pub api_key: Option<String>,
 }
 
@@ -142,7 +140,6 @@ pub struct AnthropicConfig {
     pub endpoint: String,
     #[serde(default = "default_anthropic_model")]
     pub model: String,
-    #[serde(skip_serializing)]
     pub api_key: Option<String>,
 }
 
@@ -228,10 +225,16 @@ impl Config {
         let mut config: Config = toml::from_str(&contents)
             .with_context(|| format!("Failed to parse config file: {}", path.display()))?;
 
-        // Load API keys from environment variables
-        config.providers.ollama_cloud.api_key = std::env::var("OLLAMA_API_KEY").ok();
-        config.providers.openai.api_key = std::env::var("OPENAI_API_KEY").ok();
-        config.providers.anthropic.api_key = std::env::var("ANTHROPIC_API_KEY").ok();
+        // Environment variables take precedence over config file values
+        if let Ok(key) = std::env::var("OLLAMA_API_KEY") {
+            config.providers.ollama_cloud.api_key = Some(key);
+        }
+        if let Ok(key) = std::env::var("OPENAI_API_KEY") {
+            config.providers.openai.api_key = Some(key);
+        }
+        if let Ok(key) = std::env::var("ANTHROPIC_API_KEY") {
+            config.providers.anthropic.api_key = Some(key);
+        }
 
         Ok(config)
     }
