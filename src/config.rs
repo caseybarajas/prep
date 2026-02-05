@@ -206,8 +206,6 @@ impl Default for HistoryConfig {
     }
 }
 
-
-
 impl Config {
     /// Get the configuration file path
     pub fn path() -> Result<PathBuf> {
